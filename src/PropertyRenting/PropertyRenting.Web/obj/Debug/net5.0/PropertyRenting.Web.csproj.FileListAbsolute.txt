@@ -392,3 +392,14 @@ E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenti
 E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\obj\Debug\net5.0\ref\PropertyRenting.Web.dll
 E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\obj\Debug\net5.0\PropertyRenting.Web.pdb
 E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\obj\Debug\net5.0\PropertyRenting.Web.genruntimeconfig.cache
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Autofac.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Autofac.Extensions.DependencyInjection.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.AspNetCore.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Extensions.Hosting.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Extensions.Logging.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Settings.Configuration.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Sinks.Console.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
+E:\IIT\IITJU 3-2\IT_3206_Web_Technologies_Lab\property-renting\src\PropertyRenting\PropertyRenting.Web\bin\Debug\net5.0\Serilog.Sinks.File.dll
