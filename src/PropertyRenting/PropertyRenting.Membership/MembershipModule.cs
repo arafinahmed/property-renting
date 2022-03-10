@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using PropertyRenting.Membership.Contexts;
+using PropertyRenting.Membership.Services;
 
 namespace PropertyRenting.Membership
 {
@@ -26,28 +27,10 @@ namespace PropertyRenting.Membership
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
 
-            //builder.RegisterType<MembershipDbContext>().AsSelf()
-            //    .WithParameter("connectionString", _connectionString)
-            //    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
-            //    .InstancePerLifetimeScope();
 
-            //builder.RegisterType<MembershipDbContext>().As<IMembershipDbContext>()
-            //    .WithParameter("connectionString", _connectionString)
-            //    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
-            //    .InstancePerLifetimeScope();
-
-            //builder.RegisterType<UrlService>().As<IUrlService>().InstancePerLifetimeScope();
-            //builder.RegisterType<MailSenderService>().As<IMailSenderService>().InstancePerLifetimeScope();
-            //builder.RegisterType<BoardRepository>().As<IBoardRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<MembershipUnitOfWork>().As<IMembershipUnitOfWork>().InstancePerLifetimeScope();
-            //builder.RegisterType<BoardService>().As<IBoardService>().InstancePerLifetimeScope();
-            //builder.RegisterType<ProfileService>().As<IProfileService>().InstancePerLifetimeScope();
-            //builder.RegisterType<TopicRepository>().As<ITopicRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<TopicService>().As<ITopicService>().InstancePerLifetimeScope();
-            //builder.RegisterType<PostRepository>().As<IPostRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<PostService>().As<IPostService>().InstancePerLifetimeScope();
-            //builder.RegisterType<CommentRepository>().As<ICommentRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<CommentService>().As<ICommentService>().InstancePerLifetimeScope();
+            builder.RegisterType<UrlService>().As<IUrlService>().InstancePerLifetimeScope();
+            builder.RegisterType<MailSenderService>().As<IMailSenderService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProfileService>().As<IProfileService>().InstancePerLifetimeScope();
 
             base.Load(builder);
         }

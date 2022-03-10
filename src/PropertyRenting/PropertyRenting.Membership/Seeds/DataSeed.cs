@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PropertyRenting.Membership.Entities;
-using System;
 
 namespace PropertyRenting.Membership.Seeds
 {
