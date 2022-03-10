@@ -1,20 +1,22 @@
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PropertyRenting.Web.Data;
+using PropertyRenting.Membership;
+using PropertyRenting.Membership.BusinessObject;
+using PropertyRenting.Membership.Contexts;
+using PropertyRenting.Membership.Entities;
+using PropertyRenting.Membership.Seeds;
+using PropertyRenting.Membership.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PropertyRenting.Web
 {
@@ -37,8 +39,9 @@ namespace PropertyRenting.Web
             //    .RegisterModule(new WebModule())
             //    .RegisterModule(new EmailMessagingModule(connectionInfo.connectionString,
             //    connectionInfo.migrationAssemblyName))
-            //    .RegisterModule(new MembershipModule(connectionInfo.connectionString,
-            //    connectionInfo.migrationAssemblyName));
+
+            builder.RegisterModule(new MembershipModule(connectionInfo.connectionString,
+            connectionInfo.migrationAssemblyName));
         }
 
         private (string connectionString, string migrationAssemblyName) GetConnectionStringAndAssemblyName()
@@ -68,13 +71,13 @@ namespace PropertyRenting.Web
                 options.UseSqlServer(connectionInfo.connectionString, b =>
                 b.MigrationsAssembly(connectionInfo.migrationAssemblyName)));
 
-            //services
-            //    .AddIdentity<ApplicationUser, Role>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddUserManager<UserManager>()
-            //    .AddRoleManager<RoleManager>()
-            //    .AddSignInManager<SignInManager>()
-            //    .AddDefaultTokenProviders();
+            services
+                .AddIdentity<ApplicationUser, Role>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddUserManager<UserManager>()
+                .AddRoleManager<RoleManager>()
+                .AddSignInManager<SignInManager>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -120,59 +123,34 @@ namespace PropertyRenting.Web
 
             services.AddAuthorization(options =>
             {
-                //options.AddPolicy("CompanyAdmin", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.Requirements.Add(new CompanyAdminRequirement());
-                //});
+                options.AddPolicy("Moderator", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new ModeratorRequirement());
+                });
 
-                //options.AddPolicy("SuperAdmin", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.Requirements.Add(new SuperAdminRequirement());
-                //});
+                options.AddPolicy("User", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new UserRequirement());
+                });
 
-                //options.AddPolicy("Manager", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.Requirements.Add(new ManagerRequirement());
-                //});
-
-                //options.AddPolicy("Employee", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.Requirements.Add(new EmployeeRequirement());
-                //});
-
-                //options.AddPolicy("Contractor", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.Requirements.Add(new ContractorRequirement());
-                //});
-
-                //options.AddPolicy("CommonPermission", policy =>
-                //{
-                //    policy.RequireAuthenticatedUser();
-                //    policy.Requirements.Add(new CommonPermissionRequirement());
-                //});
+                options.AddPolicy("CommonPermission", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new CommonPermissionRequirement());
+                });
             });
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             //services.AddSingleton<SuperAdminDataSeed>();
             services.AddRazorPages().AddRazorRuntimeCompilation();
-            //services.AddSingleton<IAuthorizationHandler, CommonPermissionRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, CompanyAdminRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, ContractorRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, EmployeeRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, ManagerRequirementHandler>();
-            //services.AddSingleton<IAuthorizationHandler, SuperAdminRequirementHandler>();
-            //services.Configure<PathSettings>(Configuration.GetSection("Paths"));
-            //services.Configure<SmtpConfiguration>(Configuration.GetSection("Smtp"));
-            //services.Configure<ReCaptchaKey>(Configuration.GetSection("ReCAPTCHASettings"));
-            //services.Configure<DefaultSiteSettings>(Configuration.GetSection("DefaultSiteSettings"));
-            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSingleton<IAuthorizationHandler, ModeratorRequirementHandler>();
+            services.AddSingleton<IAuthorizationHandler, UserRequirementHandler>();
+            services.AddSingleton<IAuthorizationHandler, CommonPermissionRequirementHandler>();
+            services.AddSingleton<ModeratorDataSeed>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
@@ -181,7 +159,7 @@ namespace PropertyRenting.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+            AutofacContainer = app.ApplicationServices.GetAutofacRoot();
 
             if (env.IsDevelopment())
             {
