@@ -89,7 +89,7 @@
                             <li><a href="shop-detail.html">Shop Detail</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" asp-action="ContactUs" asp-controller="Home" title="">Contact Us</a></li>
                     @if (SignInManager.IsSignedIn(User))
                         {
                             var claims = User.Claims.ToList();
