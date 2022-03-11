@@ -5,44 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PropertyRenting.Web</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PropertyRenting.Web.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/mazar/css/bootstrap.css">
-    <link rel="stylesheet" href="~/mazar/vendors/choices.js/choices.min.css" />
-    <link rel="stylesheet" href="~/mazar/vendors/iconly/bold.css">
-    <link rel="stylesheet" href="~/mazar/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="~/mazar/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="~/mazar/vendors/datatables/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="~/mazar/css/app.css">
-    <link rel="stylesheet" href="~/mazar/vendors/simple-datatables/style.css">
-    <link rel="shortcut icon" href="~/mazar/images/favicon.svg" type="image/x-icon">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="~/theme/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/theme/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/theme/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/theme/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/theme/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/theme/css/custom.css">
 </head>
 <body>
-    <partial name="Partial/_LoginPartial"/>
+    <partial name="Partial/_HeaderPartial"/>
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - PropertyRenting.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/mazar/js/bootstrap.bundle.min.js"></script>
-    <script src="~/mazar/vendors/jquery/jquery.min.js"></script>
-    <script src="~/mazar/vendors/jquery/jquery.validate.min.js"></script>
-    <script src="~/mazar/vendors/apexcharts/apexcharts.js"></script>
-    <script src="~/mazar/js/pages/dashboard.js"></script>
-    <script src="~/mazar/vendors/choices.js/choices.min.js"></script>
-    <script src="~/mazar/js/main.js"></script>
-    <script src="~/mazar/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="~/mazar/vendors/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/mazar/vendors/apexcharts/apexcharts.js"></script>
-    <script src="~/mazar/js/pages/dashboard.js"></script>
+    <partial name="Partial/_FooterPartial"/>
     @await RenderSectionAsync("Scripts", required: false)
+    <!-- ALL JS FILES -->
+    <script src="~/theme/js/jquery-3.2.1.min.js"></script>
+    <script src="~/theme/js/popper.min.js"></script>
+    <script src="~/theme/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="~/theme/js/jquery.superslides.min.js"></script>
+    <script src="~/theme/js/bootstrap-select.js"></script>
+    <script src="~/theme/js/inewsticker.js"></script>
+    <script src="~/theme/js/bootsnav.js."></script>
+    <script src="~/theme/js/images-loded.min.js"></script>
+    <script src="~/theme/js/isotope.min.js"></script>
+    <script src="~/theme/js/owl.carousel.min.js"></script>
+    <script src="~/theme/js/baguetteBox.min.js"></script>
+    <script src="~/theme/js/form-validator.min.js"></script>
+    <script src="~/theme/js/contact-form-script.js"></script>
+    <script src="~/theme/js/custom.js"></script>
 </body>
 </html>
