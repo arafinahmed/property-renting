@@ -25,9 +25,9 @@ namespace PropertyRenting.Web.Controllers
 
         public IActionResult Index()
         {
-            //var model = _scope.Resolve<CategoryListModel>();
-            //model.LoadAllCategorys();
-            return View();
+            var model = _scope.Resolve<CategoryListModel>();
+            model.LoadAllCategories();
+            return View(model);
         }
 
         public IActionResult CreateCategory()
