@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using PropertyRenting.Membership.BusinessObject;
 using PropertyRenting.Membership.Services;
+using PropertyRenting.Membership.Utilities.FileStoreUtilities;
 using System.ComponentModel.DataAnnotations;
 
 namespace PropertyRenting.Web.Models.Moderator
@@ -12,19 +13,20 @@ namespace PropertyRenting.Web.Models.Moderator
         public string ProductName { get; set; }
         public Guid CategoryId { get; set; }
         public string Description { get; set; }
-        public string? ImageUrl { get; set; }
         public int Price { get; set; }
         public IFormFile FormFile { get; set; }
         private ILifetimeScope _scope;
         private IProductService _productService;
         private IProfileService _profileService;
+        private IFileStoreUtility _fileStoreUtility;
 
         public CreateProductModel() { }
 
-        public CreateProductModel(IProductService productService, IProfileService profileService)
+        public CreateProductModel(IProductService productService, IProfileService profileService, IFileStoreUtility fileStoreUtility)
         {
             _productService = productService;
             _profileService = profileService;
+            _fileStoreUtility = fileStoreUtility;
         }
 
         public void Resolve(ILifetimeScope scope)
@@ -32,6 +34,7 @@ namespace PropertyRenting.Web.Models.Moderator
             _scope = scope;
             _productService = _scope.Resolve<IProductService>();
             _profileService = _scope.Resolve<IProfileService>();
+            _fileStoreUtility = _scope.Resolve<IFileStoreUtility>();
         }
 
         public async Task CreateProduct(string userEmail)
@@ -49,18 +52,18 @@ namespace PropertyRenting.Web.Models.Moderator
                 throw new NullReferenceException("Claim is required for creating a Product");
 
             var claim = claims.FirstOrDefault();
-
+            var path = _fileStoreUtility.StoreFile(FormFile).filePath;
             if (claim.Type != "Moderator")
             {
                 throw new InvalidOperationException("You are not permited to create a Product");
             }
-
+            
             await _productService.CreateProduct(new Product 
             { 
                 ProductName = ProductName,
                 CategoryId = CategoryId,
                 Description = Description,
-                ImageUrl = ImageUrl,
+                ImageUrl = path,
                 Price = Price
             }, user.Id);
         }
