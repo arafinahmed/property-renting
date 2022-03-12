@@ -3,6 +3,7 @@ using PropertyRenting.Membership.Contexts;
 using PropertyRenting.Membership.Repositories;
 using PropertyRenting.Membership.Services;
 using PropertyRenting.Membership.UnitOfWorks;
+using PropertyRenting.Membership.Utilities.FileStoreUtilities;
 
 namespace PropertyRenting.Membership
 {
@@ -52,6 +53,17 @@ namespace PropertyRenting.Membership
             builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
             builder.RegisterType<BookingService>().As<IBookingService>().InstancePerLifetimeScope();
             builder.RegisterType<MessageService>().As<IMessageService>().InstancePerLifetimeScope();
+
+
+            builder.RegisterType<PathService>().As<IPathService>().InstancePerLifetimeScope();
+            builder.RegisterType<FileAdapter>().As<IFileAdapter>().InstancePerLifetimeScope();
+            builder.RegisterType<DirectoryAdapter>().As<IDirectoryAdapter>().InstancePerLifetimeScope();
+            builder.RegisterType<FileStoreUtility>().As<IFileStoreUtility>().InstancePerLifetimeScope();
+            
+            
+            
+            
+            
 
             base.Load(builder);
         }
