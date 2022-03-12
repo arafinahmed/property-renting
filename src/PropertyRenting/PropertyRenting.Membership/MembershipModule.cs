@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using PropertyRenting.Membership.Contexts;
+using PropertyRenting.Membership.Repositories;
 using PropertyRenting.Membership.Services;
+using PropertyRenting.Membership.UnitOfWorks;
 
 namespace PropertyRenting.Membership
 {
@@ -27,10 +29,25 @@ namespace PropertyRenting.Membership
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<MembershipDbContext>().AsSelf()
+                .WithParameter("connectionString", _connectionString)
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<MembershipDbContext>().As<IMembershipDbContext>()
+                .WithParameter("connectionString", _connectionString)
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                .InstancePerLifetimeScope();
+
 
             builder.RegisterType<UrlService>().As<IUrlService>().InstancePerLifetimeScope();
             builder.RegisterType<MailSenderService>().As<IMailSenderService>().InstancePerLifetimeScope();
             builder.RegisterType<ProfileService>().As<IProfileService>().InstancePerLifetimeScope();
+            builder.RegisterType<BookingRepository>().As<IBookingRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MembershipUnitOfWork>().As<IMembershipUnitOfWork>().InstancePerLifetimeScope();
 
             base.Load(builder);
         }
