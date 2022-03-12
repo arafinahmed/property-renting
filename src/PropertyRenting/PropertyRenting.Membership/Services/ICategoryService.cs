@@ -9,6 +9,6 @@ namespace PropertyRenting.Membership.Services
 {
     public interface ICategoryService
     {
-        
+        Task CreateCategory(Category category, Guid modId);
     }
 }
