@@ -52,7 +52,7 @@ namespace PropertyRenting.Web.Models.Moderator
                 throw new NullReferenceException("Claim is required for creating a Product");
 
             var claim = claims.FirstOrDefault();
-            var path = _fileStoreUtility.StoreFile(FormFile).filePath;
+            var path = new FileInfo(_fileStoreUtility.StoreFile(FormFile).filePath).Name;
             if (claim.Type != "Moderator")
             {
                 throw new InvalidOperationException("You are not permited to create a Product");
