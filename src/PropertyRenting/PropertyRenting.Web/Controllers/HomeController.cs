@@ -35,7 +35,8 @@ namespace PropertyRenting.Web.Controllers
 
         public IActionResult ContactUs()
         {
-            return View();
+            var model = _scope.Resolve<ContactModel>();
+            return View(model);
         }
         [HttpPost]
         public async Task<IActionResult> ContactUs(ContactModel model)
@@ -45,7 +46,7 @@ namespace PropertyRenting.Web.Controllers
                 model.Resolve(_scope);
                 await model.StoreMessage();
             }
-            return View();
+            return View(model);
         }
     }
 }

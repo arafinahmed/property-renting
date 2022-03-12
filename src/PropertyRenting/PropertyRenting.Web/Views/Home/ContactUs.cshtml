@@ -45,7 +45,7 @@
                 <div class="contact-form-right">
                     <h2>GET IN TOUCH</h2>
                     <p>If you have any suggestion or any query, please feel free to inform us. We will contact with you as soon as possible.</p>
-                    <form id="contactForm" method="post" asp-controller="Home" asp-action="ContactUs" asp-antiforgery="true">
+                    <form id="" method="post" asp-controller="Home" asp-action="ContactUs" asp-antiforgery="true">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -74,6 +74,13 @@
                                     <button class="btn hvr-hover" type="submit">Send Message</button>
                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                                     <div class="clearfix"></div>
+                                </div>
+                                <div class="text-center">
+                                    <p class = "text-success">
+                                        @if(ViewData.ModelState.IsValid){
+                                            @Model.Success
+                                        }
+                                    </p>
                                 </div>
                             </div>
                         </div>

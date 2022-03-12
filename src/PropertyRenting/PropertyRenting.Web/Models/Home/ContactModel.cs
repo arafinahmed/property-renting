@@ -13,6 +13,7 @@ namespace PropertyRenting.Web.Models.Home
         public string Subject { get; set; }
 
         public string Description { get; set; }
+        public string? Success { get; set; }
 
         private ILifetimeScope _scope;
         private IMessageService _messageService;
@@ -38,6 +39,8 @@ namespace PropertyRenting.Web.Models.Home
 
             await _messageService.StoreMessage(new Message { Name = Name, Description = Description, Email = Email, Subject = Subject});
             await _mailSenderService.UserMessageToAdminAsync(Name, Email, Subject, Description);
+            Success = "Your message is sent successfully. We concern about your opinion.";
+
         }
     }
 }
