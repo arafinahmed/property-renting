@@ -66,5 +66,10 @@ namespace PropertyRenting.Membership.Services
 
             return Categoryies;
         }
+
+        public IList<Category> GetAll()
+        {
+            var CategoryEntities = _unitOfWork.Category.GetAll("Product");
+        }
     }
 }
