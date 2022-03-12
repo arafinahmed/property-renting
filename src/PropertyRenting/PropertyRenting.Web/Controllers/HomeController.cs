@@ -50,5 +50,10 @@ namespace PropertyRenting.Web.Controllers
             }
             return View(model);
         }
+
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
     }
 }
