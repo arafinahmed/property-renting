@@ -1,23 +1,23 @@
-﻿@*@model Onnorokom.Forum.Web.Models.Moderator.BoardListModel*@
+﻿@model PropertyRenting.Web.Models.Moderator.CategoryListModel
 
 @{
-    ViewData["Title"] = "Boards";
+    ViewData["Title"] = "Categories";
 }
 
 <div class="container">
     <button class="mt-4"><a class="nav-link text-dark" type="button" asp-controller="Moderator" asp-action="CreateCategory" title="">New Category</a></button>
     <div class="row">
-        @*@{
-            foreach(var board in Model.Boards)
+        @{
+            foreach(var board in Model.Categories)
             {
                 <div class="card col-md-3 m-2">
                     <div class="card-body">
-                        <a href="/Home/Topics/@board.Id"><h5 class="card-title">@board.BoardName</h5></a>
+                        <a href="/Home/Topics/@board.Id"><h5 class="card-title">@board.CategoryName</h5></a>
                         <a href="/Moderator/EditBoard/@board.Id" class="card-link">Edit</a>
                         <a href="/Moderator/DeleteBoard/@board.Id" class="card-link">Delete</a>
                     </div>
                 </div>
             }
-        }*@
+        }
     </div>
 </div>
