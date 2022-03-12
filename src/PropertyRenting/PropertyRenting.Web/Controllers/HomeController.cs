@@ -19,6 +19,8 @@ namespace PropertyRenting.Web.Controllers
 
         public IActionResult Index()
         {
+            var model = _scope.Resolve<HomeModel>();
+            model.LoadAllCategories();
             return View();
         }
 
