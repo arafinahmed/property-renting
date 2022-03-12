@@ -11,6 +11,5 @@ namespace PropertyRenting.Membership.Services
     {
         Task CreateCategory(Category category, Guid modId);
         IList<Category> GetAllCategorys();
-        IList<Category> GetAll();
     }
 }
