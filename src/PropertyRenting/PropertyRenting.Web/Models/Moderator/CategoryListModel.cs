@@ -24,7 +24,7 @@ namespace PropertyRenting.Web.Models.Moderator
 
         public void LoadAllCategories()
         {
-            //Categories = _categoryService.GetAllCategories();
+            Categories = _categoryService.GetAllCategorys();
         }
     }
 }
