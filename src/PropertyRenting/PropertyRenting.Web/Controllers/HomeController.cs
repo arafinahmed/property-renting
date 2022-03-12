@@ -21,7 +21,7 @@ namespace PropertyRenting.Web.Controllers
         {
             var model = _scope.Resolve<HomeModel>();
             model.LoadAllCategories();
-            return View();
+            return View(model);
         }
 
         public IActionResult Privacy()
