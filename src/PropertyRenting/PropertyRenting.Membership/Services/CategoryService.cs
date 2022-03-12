@@ -69,7 +69,7 @@ namespace PropertyRenting.Membership.Services
 
         public IList<Category> GetAll()
         {
-            var CategoryEntities = _unitOfWork.Category.Get(null, "Product");
+            var CategoryEntities = _unitOfWork.Category.Get(x => x.CategoryName != String.Empty, "Products");
             var Categoryies = new List<Category>();
 
             foreach (var CategoryEntity in CategoryEntities)
