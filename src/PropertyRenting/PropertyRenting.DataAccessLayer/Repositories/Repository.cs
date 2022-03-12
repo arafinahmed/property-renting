@@ -23,6 +23,11 @@ namespace PropertyRenting.DataAccessLayer.Repositories
             _dbSet.Add(entity);
         }
 
+        public virtual async Task AddAsync(TEntity entity)
+        {
+            await _dbSet.AddAsync(entity);
+        }
+
         public virtual void Edit(TEntity entityToUpdate)
         {
             if (_dbContext.Entry(entityToUpdate).State == EntityState.Detached)
