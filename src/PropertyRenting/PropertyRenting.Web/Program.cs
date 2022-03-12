@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 using PropertyRenting.Membership.Seeds;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ForumDbConnection");
+var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 var migrationAssemblyName = typeof(Program).Assembly.FullName;
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
