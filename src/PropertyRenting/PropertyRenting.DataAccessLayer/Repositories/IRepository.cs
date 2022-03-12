@@ -10,6 +10,7 @@ namespace PropertyRenting.DataAccessLayer.Repositories
     public interface IRepository<TEntity, TKey>
         where TEntity : class, IEntity<TKey>
     {
+        Task AddAsync(TEntity entity);
         void Add(TEntity entity);
         void Remove(TEntity entityToDelete);
         void Remove(TKey Id);
