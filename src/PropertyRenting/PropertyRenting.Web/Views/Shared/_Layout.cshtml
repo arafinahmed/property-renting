@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PropertyRenting.Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="~/theme/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/theme/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/theme/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/theme/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/theme/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/theme/css/custom.css">
+</head>
+<body>
+    <partial name="Partial/_HeaderPartial"/>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <partial name="Partial/_FooterPartial"/>
+    @await RenderSectionAsync("Scripts", required: false)
+    <!-- ALL JS FILES -->
+    <script src="~/theme/js/jquery-3.2.1.min.js"></script>
+    <script src="~/theme/js/popper.min.js"></script>
+    <script src="~/theme/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="~/theme/js/jquery.superslides.min.js"></script>
+    <script src="~/theme/js/bootstrap-select.js"></script>
+    <script src="~/theme/js/inewsticker.js"></script>
+    <script src="~/theme/js/bootsnav.js."></script>
+    <script src="~/theme/js/images-loded.min.js"></script>
+    <script src="~/theme/js/isotope.min.js"></script>
+    <script src="~/theme/js/owl.carousel.min.js"></script>
+    <script src="~/theme/js/baguetteBox.min.js"></script>
+    <script src="~/theme/js/form-validator.min.js"></script>
+    <script src="~/theme/js/contact-form-script.js"></script>
+    <script src="~/theme/js/custom.js"></script>
+</body>
+</html>

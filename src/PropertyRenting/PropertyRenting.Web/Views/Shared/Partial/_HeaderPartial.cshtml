@@ -1,0 +1,151 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PropertyRenting.Membership.Entities
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!-- Start Main Top -->
+<header class="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+                <a class="navbar-brand" asp-action="Index" asp-controller="Home">BD PROPERTY RENTING</a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <li class="nav-item active"><a class="nav-link" asp-action="Index" asp-controller="Home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="dropdown megamenu-fw">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Product</a>
+                        <ul class="dropdown-menu megamenu-content" role="menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Top</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="shop.html">Jackets</a></li>
+                                                <li><a href="shop.html">Shirts</a></li>
+                                                <li><a href="shop.html">Sweaters & Cardigans</a></li>
+                                                <li><a href="shop.html">T-shirts</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Bottom</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="shop.html">Swimwear</a></li>
+                                                <li><a href="shop.html">Skirts</a></li>
+                                                <li><a href="shop.html">Jeans</a></li>
+                                                <li><a href="shop.html">Trousers</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Clothing</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="shop.html">Top Wear</a></li>
+                                                <li><a href="shop.html">Party wear</a></li>
+                                                <li><a href="shop.html">Bottom Wear</a></li>
+                                                <li><a href="shop.html">Indian Wear</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-menu col-md-3">
+                                        <h6 class="title">Accessories</h6>
+                                        <div class="content">
+                                            <ul class="menu-col">
+                                                <li><a href="shop.html">Bags</a></li>
+                                                <li><a href="shop.html">Sunglasses</a></li>
+                                                <li><a href="shop.html">Fragrances</a></li>
+                                                <li><a href="shop.html">Wallets</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end col-3 -->
+                                </div>
+                                <!-- end row -->
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="my-account.html">My Account</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="shop-detail.html">Shop Detail</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-dark" asp-action="ContactUs" asp-controller="Home" title="">Contact Us</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                        {
+                            var claims = User.Claims.ToList();
+                            foreach (var claim in claims)
+                            {
+                                if (claim.Type == "Moderator")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-controller="Moderator" asp-action="Index" title="">Moderator</a>
+                                    </li>
+                                    break;
+                                }
+                            }
+
+                            <li class="nav-item"><a class="nav-link text-dark" asp-action="Logout" asp-controller="Account" title="">Sign Out</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link text-dark" asp-action="Login" asp-controller="Account" title="">Sign In</a></li>
+                            <li class="nav-item">
+                                <a asp-action="Register" asp-controller="Account" class="nav-link text-dark" title="">Sign Up</a>
+                            </li>
+                        }
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <ul class="cart-list">
+                    <li>
+                        <a href="#" class="photo"><img src="~/theme/images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Delica omtantur </a></h6>
+                        <p>1x - <span class="price">$80.00</span></p>
+                    </li>
+                    <li>
+                        <a href="#" class="photo"><img src="~/theme/images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Omnes ocurreret</a></h6>
+                        <p>1x - <span class="price">$60.00</span></p>
+                    </li>
+                    <li>
+                        <a href="#" class="photo"><img src="~/theme/images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                        <h6><a href="#">Agam facilisis</a></h6>
+                        <p>1x - <span class="price">$40.00</span></p>
+                    </li>
+                    <li class="total">
+                        <a href="#" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                        <span class="float-right"><strong>Total</strong>: $180.00</span>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <!-- End Side Menu -->
+    </nav>
+    <!-- End Navigation -->
+</header>
+<!-- End Main Top -->
