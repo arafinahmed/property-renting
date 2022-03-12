@@ -54,5 +54,17 @@ namespace PropertyRenting.Membership.Services
             _unitOfWork.Save();
         }
 
+        public IList<Category> GetAllCategorys()
+        {
+            var CategoryEntities = _unitOfWork.Category.GetAll();
+            var Categoryies = new List<Category>();
+
+            foreach (var CategoryEntity in CategoryEntities)
+            {
+                Categoryies.Add(new Category { CategoryName = CategoryEntity.CategoryName, Id = CategoryEntity.Id });
+            }
+
+            return Categoryies;
+        }
     }
 }
