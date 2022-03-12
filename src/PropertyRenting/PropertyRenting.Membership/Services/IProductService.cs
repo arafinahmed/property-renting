@@ -9,6 +9,6 @@ namespace PropertyRenting.Membership.Services
 {
     public interface IProductService
     {
-
+        Task CreateProduct(Product product, Guid modId);
     }
 }

@@ -126,6 +126,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ModeratorDataSeed>();
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<SmtpConfiguration>(builder.Configuration.GetSection("Smtp"));
+builder.Services.Configure<PathSettings>(builder.Configuration.GetSection("Paths"));
+builder.Services.Configure<DefaultSiteSettings>(builder.Configuration.GetSection("DefaultSiteSettings"));
 
 try
 {
