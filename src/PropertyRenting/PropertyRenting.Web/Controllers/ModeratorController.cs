@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PropertyRenting.Membership.Entities;
+using PropertyRenting.Web.Models.Moderator;
 
 namespace PropertyRenting.Web.Controllers
 {
@@ -24,31 +25,31 @@ namespace PropertyRenting.Web.Controllers
 
         public IActionResult Index()
         {
-            //var model = _scope.Resolve<BoardListModel>();
-            //model.LoadAllBoards();
+            //var model = _scope.Resolve<CategoryListModel>();
+            //model.LoadAllCategorys();
             return View();
         }
 
-        public IActionResult CreateBoard()
+        public IActionResult CreateCategory()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBoard(CreateBoardModel model)
+        public async Task<IActionResult> CreateCategory(CreateCategoryModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
                     model.Resolve(_scope);
-                    await model.CreateBoard(_userManager.GetUserName(User));
+                    await model.CreateCategory(_userManager.GetUserName(User));
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", ex.Message);
-                    _logger.LogError(ex, "Board Creation Failed");
+                    _logger.LogError(ex, "Category Creation Failed");
                     return View(model);
                 }
             }

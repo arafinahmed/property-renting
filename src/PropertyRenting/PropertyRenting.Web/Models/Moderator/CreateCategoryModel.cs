@@ -50,7 +50,7 @@ namespace PropertyRenting.Web.Models.Moderator
                 throw new InvalidOperationException("You are not permited to create a Category");
             }
 
-            //await _categoryService.CreateCategory(new Category { CategoryName = CategoryName }, user.Id);
+            await _categoryService.CreateCategory(new Category { CategoryName = CategoryName }, user.Id);
         }
     }
 }
