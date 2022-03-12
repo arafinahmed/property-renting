@@ -9,5 +9,6 @@ namespace PropertyRenting.Membership.Services
 {
     public interface IMessageService
     {
+        Task StoreMessage(Message message);
     }
 }

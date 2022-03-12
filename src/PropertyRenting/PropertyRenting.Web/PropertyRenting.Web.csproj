@@ -30,7 +30,6 @@
     <Folder Include="Areas\" />
     <Folder Include="Data\" />
     <Folder Include="Data\Migrations\" />
-    <Folder Include="Models\Home\" />
     <Folder Include="wwwroot\theme\fonts\" />
   </ItemGroup>
 

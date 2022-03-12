@@ -19,5 +19,10 @@ namespace PropertyRenting.Membership.Services
             _unitOfWork = unitOfWork;
             _profileService = profileService;
         }
+        public async Task StoreMessage(Message message)
+        {
+            await _unitOfWork.Message.AddAsync(new EO.Message {Name = message.Name, Email = message.Email, Subject = message.Subject, Description = message.Description});
+            _unitOfWork.Save();
+        }
     }
 }
