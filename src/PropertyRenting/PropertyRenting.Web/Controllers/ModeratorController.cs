@@ -55,5 +55,33 @@ namespace PropertyRenting.Web.Controllers
             }
             return View(model);
         }
+
+        public IActionResult CreateProduct(Guid id)
+        {
+            var model = _scope.Resolve<CreateProductModel>();
+            model.CategoryId = id;
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(CreateProductModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.Resolve(_scope);
+                    await model.CreateProduct(_userManager.GetUserName(User));
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    _logger.LogError(ex, "Category Creation Failed");
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
     }
 }

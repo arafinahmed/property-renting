@@ -14,6 +14,8 @@ namespace PropertyRenting.Web
             builder.RegisterType<ContactModel>().AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<CategoryListModel>().AsSelf().InstancePerLifetimeScope();
             builder.RegisterType<CreateCategoryModel>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<CreateProductModel>().AsSelf().InstancePerLifetimeScope();
+            builder.RegisterType<HomeModel>().AsSelf().InstancePerLifetimeScope();
 
             base.Load(builder);
         }
