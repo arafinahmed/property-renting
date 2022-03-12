@@ -274,19 +274,12 @@ namespace PropertyRenting.Web.Controllers
             return View();
         }
 
-        [HttpPost]
         public async Task<IActionResult> Logout(string? returnUrl = null)
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            if (returnUrl != null)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
+            
         }
 
         public IActionResult AccessDenied()

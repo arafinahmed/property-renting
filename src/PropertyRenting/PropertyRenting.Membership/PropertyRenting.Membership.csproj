@@ -20,9 +20,4 @@
     <ProjectReference Include="..\PropertyRenting.DataAccessLayer\PropertyRenting.DataAccessLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="UnitOfWorks\" />
-  </ItemGroup>
-
 </Project>

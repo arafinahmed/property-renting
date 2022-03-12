@@ -11,5 +11,6 @@ namespace PropertyRenting.Membership.Services
     {
         Task SendEmailConfirmationMailAsync(ApplicationUser user, string verificationCode);
         Task SendResetPasswordMailAsync(ApplicationUser user, string verificationCode);
+        Task UserMessageToAdminAsync(string name, string email, string subject, string description);
     }
 }

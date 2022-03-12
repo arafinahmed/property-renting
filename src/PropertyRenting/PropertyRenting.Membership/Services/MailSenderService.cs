@@ -32,7 +32,7 @@ namespace PropertyRenting.Membership.Services
             var verificationLink = _urlService.GenerateAbsoluteUrl("Account", "ConfirmEmail",
                 new { username = user.UserName, code = verificationCode, area = "" });
 
-            var emailBody = $"Thanks for registering for an account on DevTeam!" +
+            var emailBody = $"Thanks for registering for an account on BD PROPERTY RENTING!" +
                 $" Before we get started, we just need to confirm that this is you." +
                 $" <a href='{verificationLink}'>Click Here</a> to verify your email address ";
 
@@ -47,6 +47,15 @@ namespace PropertyRenting.Membership.Services
             var emailBody = $"To reset password please" + $" <a href='{verificationLink}'>Click Here</a>";
 
             await _queuedEmailService.SendSingleEmailAsync(user.UserName, user.Email, resetPasswordEmailSubject, emailBody);
+        }
+
+        public async Task UserMessageToAdminAsync(string name, string email, string subject, string description)
+        {
+            var emailBody = description + $"<br><br>" +
+                $"~<br>" +
+                $"{name}<br>" +
+                $"{email}";
+            await _queuedEmailService.SendSingleEmailAsync("Admin", "arafin2021@gmail.com", subject, emailBody);
         }
     }
 }

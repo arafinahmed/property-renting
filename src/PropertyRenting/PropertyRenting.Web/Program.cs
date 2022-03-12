@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 using PropertyRenting.Membership.Seeds;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ForumDbConnection");
+var connectionString = builder.Configuration.GetConnectionString("DbConnection");
 var migrationAssemblyName = typeof(Program).Assembly.FullName;
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -40,6 +40,10 @@ builder.Host.UseSerilog((ctx, lc) => lc
 // Add services to the container.
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString,
+                b => b.MigrationsAssembly(migrationAssemblyName)));
+
+builder.Services.AddDbContext<MembershipDbContext>(options =>
                 options.UseSqlServer(connectionString,
                 b => b.MigrationsAssembly(migrationAssemblyName)));
 
@@ -122,6 +126,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<ModeratorDataSeed>();
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<SmtpConfiguration>(builder.Configuration.GetSection("Smtp"));
+builder.Services.Configure<PathSettings>(builder.Configuration.GetSection("Paths"));
+builder.Services.Configure<DefaultSiteSettings>(builder.Configuration.GetSection("DefaultSiteSettings"));
 
 try
 {

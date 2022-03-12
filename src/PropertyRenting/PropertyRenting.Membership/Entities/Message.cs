@@ -9,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace PropertyRenting.Membership.Entities
 {
-    public class Post : IEntity<Guid>
+    public class Message : IEntity<Guid>
     {
         public Guid Id { get; set; }
-        [Required, MaxLength(1024)]
-        public string Description { get; set; }
-        [ForeignKey("Topic")]
-        public Guid TopicId { get; set; }
-        public Topic Topic { get; set; }
-        public Guid CreatorId { get; set; }
         [Required, MaxLength(255)]
-        public string CreatorEmail { get; set; }
+        public string Name { get; set; }
+        [Required, MaxLength(255)]
+        public string Email { get; set; }
+        [Required, MaxLength(255)]
+        public string Subject { get; set; }
+        [Required, MaxLength(2048)]
+        public string Description { get; set; }
+
     }
 }

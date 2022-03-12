@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using PropertyRenting.Membership.Contexts;
+using PropertyRenting.Membership.Repositories;
 using PropertyRenting.Membership.Services;
+using PropertyRenting.Membership.UnitOfWorks;
+using PropertyRenting.Membership.Utilities.FileStoreUtilities;
 
 namespace PropertyRenting.Membership
 {
@@ -27,10 +30,40 @@ namespace PropertyRenting.Membership
                 .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<MembershipDbContext>().AsSelf()
+                .WithParameter("connectionString", _connectionString)
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<MembershipDbContext>().As<IMembershipDbContext>()
+                .WithParameter("connectionString", _connectionString)
+                .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                .InstancePerLifetimeScope();
+
 
             builder.RegisterType<UrlService>().As<IUrlService>().InstancePerLifetimeScope();
             builder.RegisterType<MailSenderService>().As<IMailSenderService>().InstancePerLifetimeScope();
             builder.RegisterType<ProfileService>().As<IProfileService>().InstancePerLifetimeScope();
+            builder.RegisterType<BookingRepository>().As<IBookingRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MembershipUnitOfWork>().As<IMembershipUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryService>().As<ICategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<BookingService>().As<IBookingService>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageService>().As<IMessageService>().InstancePerLifetimeScope();
+
+
+            builder.RegisterType<PathService>().As<IPathService>().InstancePerLifetimeScope();
+            builder.RegisterType<FileAdapter>().As<IFileAdapter>().InstancePerLifetimeScope();
+            builder.RegisterType<DirectoryAdapter>().As<IDirectoryAdapter>().InstancePerLifetimeScope();
+            builder.RegisterType<FileStoreUtility>().As<IFileStoreUtility>().InstancePerLifetimeScope();
+            
+            
+            
+            
+            
 
             base.Load(builder);
         }

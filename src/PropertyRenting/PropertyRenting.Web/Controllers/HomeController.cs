@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Mvc;
 using PropertyRenting.Web.Models;
+using PropertyRenting.Web.Models.Home;
 using System.Diagnostics;
 
 namespace PropertyRenting.Web.Controllers
@@ -18,7 +19,9 @@ namespace PropertyRenting.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = _scope.Resolve<HomeModel>();
+            model.LoadAllCategories();
+            return View(model);
         }
 
         public IActionResult Privacy()
@@ -30,6 +33,27 @@ namespace PropertyRenting.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult ContactUs()
+        {
+            var model = _scope.Resolve<ContactModel>();
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ContactUs(ContactModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Resolve(_scope);
+                await model.StoreMessage();
+            }
+            return View(model);
+        }
+
+        public IActionResult AboutUs()
+        {
+            return View();
         }
     }
 }
