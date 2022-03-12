@@ -66,5 +66,31 @@ namespace PropertyRenting.Membership.Services
 
             return Categoryies;
         }
+
+        public IList<Category> GetAll()
+        {
+            var CategoryEntities = _unitOfWork.Category.Get(x => x.CategoryName != String.Empty, "Products");
+            var Categoryies = new List<Category>();
+
+            foreach (var CategoryEntity in CategoryEntities)
+            {
+                var products = new List<Product>();
+                foreach (var ProductEntity in CategoryEntity.Products)
+                {
+                    products.Add(new Product
+                    {
+                        ProductName = ProductEntity.ProductName,
+                        Id = ProductEntity.Id,
+                        CategoryId = ProductEntity.CategoryId,
+                        Description = ProductEntity.Description,
+                        ImageUrl = ProductEntity.ImageUrl,
+                        Price = ProductEntity.Price
+                    });
+                }
+                var Category = new Category { CategoryName = CategoryEntity.CategoryName, Id = CategoryEntity.Id, Products = products };
+                Categoryies.Add(Category);
+            }
+            return Categoryies;
+        }
     }
 }
